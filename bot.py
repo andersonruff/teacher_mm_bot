@@ -2,8 +2,8 @@ import requests
 import random
 from datetime import datetime
 
-TOKEN = "SEU_TOKEN"
-CHAT_ID = "SEU_CHAT_ID"
+TOKEN = "8597408134:AAHN1RigTqFpBxlXojbs8QHPJWpGoXSNzys"
+CHAT_ID = "5567793568"
 
 QUESTIONS = [
     "What is your name?",
