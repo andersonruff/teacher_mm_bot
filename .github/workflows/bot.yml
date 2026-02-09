@@ -1,27 +1,30 @@
-name: Bot Telegram Inglês
+import requests
+import random
+from datetime import datetime
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 12 * * *"   # roda todo dia às 12h UTC
+TOKEN = "SEU_TOKEN"
+CHAT_ID = "SEU_CHAT_ID"
 
-jobs:
-  run-bot:
-    runs-on: ubuntu-latest
+QUESTIONS = [
+    "What is your name?",
+    "Where are you from?",
+    "What did you do yesterday?",
+    "Describe your daily routine."
+]
 
-    steps:
-      - name: 📥 Clonar repositório
-        uses: actions/checkout@v4
+def send_telegram(message):
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    requests.post(url, data={
+        "chat_id": CHAT_ID,
+        "text": message
+    })
 
-      - name: 🐍 Configurar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+question = random.choice(QUESTIONS)
 
-      - name: 📦 Instalar dependências
-        run: |
-          pip install -r requirements.txt
+message = (
+    "🇬🇧 English Practice\n\n"
+    f"{question}\n\n"
+    f"⏰ {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}"
+)
 
-      - name: ▶️ Rodar bot
-      run: |
-        python bot.py
+send_telegram(message)
