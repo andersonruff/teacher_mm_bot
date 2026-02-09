@@ -2,8 +2,8 @@ import requests
 import random
 from datetime import datetime
 
-TOKEN = ""
-CHAT_ID = ""
+BOT_TOKEN = os.environ['BOT_TOKEN']
+CHAT_ID = os.environ['CHAT_ID']
 
 QUESTIONS = [
     "What is your name?",
